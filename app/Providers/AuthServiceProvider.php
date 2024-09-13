@@ -27,5 +27,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::routes();
+        Passport::tokensCan([
+            'view-tweet' => 'View Tweet',
+            'post-tweet' => 'Post Tweet'
+        ]);
+
+        Passport::tokensExpireIn(now()->addSeconds(20));
+        // Passport::refreshTokensExpireIn(now()->addDays(30));
     }
 }
